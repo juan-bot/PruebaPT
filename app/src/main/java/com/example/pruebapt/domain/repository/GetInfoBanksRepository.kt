@@ -14,11 +14,11 @@ class GetInfoBanksRepository (){
     private suspend fun getBanksApi(): List<BankResponse>{
         return RetrofitBank.api().getBankInfo()
     }
-    private suspend fun CreateDB(context: Context): AppDataBase {
+    private suspend fun createDB(context: Context): AppDataBase {
         return DataBase(context).getDB()
     }
     suspend fun getInfoBanks(context: Context): MutableList<BankModel>{
-        var db = CreateDB(context)
+        var db = createDB(context)
         val localData = db.bankDao().getAll()
         val bankList : MutableList<BankModel> = arrayListOf()
         if(localData.isEmpty()){
